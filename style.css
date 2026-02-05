@@ -6,11 +6,15 @@
     box-sizing: border-box;
 }
 
+/* ========== ផ្នែកការពារ Notch និង Dynamic Island (បន្ថែមក្នុង Body) ========== */
 body {
     background-color: rgb(9, 9, 227);
     width: 100%;
     min-height: 100vh;
     font-family: "Siemreap", sans-serif;
+    /* បន្ថែមខាងក្រោមនេះ */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .Pic-pf-1 {
@@ -30,7 +34,7 @@ body {
 }
 
 .table-1 {
-    width: 99%;
+    width: 100%;
     border-collapse: collapse;
     background-color: rgb(1, 60, 1);
     box-shadow: 0 0 5px white;
@@ -62,45 +66,46 @@ body {
     background-color: rgb(4, 100, 2);
     display: flex;
     width: 100%;
-    padding: 20px 5px;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+    padding: 20px 15px;
+    align-items: center;      /* ឱ្យ Logo និងអក្សរនៅកណ្តាលជួរដេកជាមួយគ្នា */
+    justify-content: center;   /* ឱ្យវាស្ថិតនៅកណ្តាលអេក្រង់ */
+    gap: 15px;                /* ចម្ងាយរវាង Logo និង អក្សរ */
+    flex-wrap: nowrap !important; /* បង្ខំមិនឱ្យធ្លាក់ជួរដាច់ខាត */
+}
+
+.company-logo {
+    width: 80px;              /* កំណត់ទំហំឱ្យសមល្មម */
+    height: 80px;
+    flex-shrink: 0;           /* ការពារកុំឱ្យ Logo រួញតូចពេលអក្សរច្រើន */
+    object-fit: contain;
 }
 
 .Text-company {
     color: white;
-    font-family: "Moul", serif;
-    font-size: 26px;
-    text-align: center;
-    line-height: 1.2;
+    font-family: "Moul", serif;          /* បន្ថយទំហំបន្តិចដើម្បីឱ្យសមនឹងអេក្រង់ទូរសព្ទ */
+    text-align: left;         /* តម្រឹមអក្សរទៅឆ្វេង (ជាប់ Logo) */
+    line-height: 1.5;
 }
-
 .Text-company-1 {
-    font-size: 20px;
-    font-family: "Siemreap", sans-serif;
     color: white;
+    font-family: "Moul", serif;          /* បន្ថយទំហំបន្តិចដើម្បីឱ្យសមនឹងអេក្រង់ទូរសព្ទ */
+    text-align: center;         /* តម្រឹមអក្សរទៅឆ្វេង (ជាប់ Logo) */
+    line-height: 2;
 }
 
-.company-logo {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
 
 .buttongroup {
     display: flex;
     gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 20px auto;
+    margin: 15px auto;
     padding: 0 10px;
-    max-width: 800px;
+    max-width: 700px;
 }
 
 .btn {
-    padding: 12px 25px;
+    padding: 10px 20px;
     font-size: 14px;
     border: none;
     border-radius: 50px;
@@ -112,7 +117,7 @@ body {
     background: linear-gradient(45deg, #68766c, #03a9f4);
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
+    min-width: 80px;
     text-align: center;
     font-family: "Siemreap", sans-serif;
 }
@@ -125,10 +130,9 @@ body {
 .note-1 {
     color: white;
     font-family: "Siemreap", sans-serif;
-    font-size: 12px;
     width: 100%;
     border-radius: 5px;
-    padding: 15px;
+    padding: 5px;
     background-color: rgb(246, 2, 2);
     margin: 0px auto;
     text-align: center;
@@ -156,395 +160,236 @@ body {
 }
 
 /* ... កូដដើមផ្សេងៗទៀត ... */
+/* ========== REVISED MEDIA QUERIES (Mobile First Logic) ========== */
 
-/* ========== MEDIA QUERIES (តម្រៀបតាមទំហំពីធំទៅតូច) ========== */
-
-/* 1. Tablet (769px - 1024px) laptop */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .table-container {
-        width: 85%;
-    }
-    .Pic-pf-1 {
-        width: 40%;
-        margin-bottom: 0;
-    }
-    
-    .table-1 th,
-    .table-1 td {
-        padding: 10px;
-        min-width: 120px;
-        font-size: 13px;
-    }
-    .table-1 th.name-khmer {
-        font-size: 18px;
-        color: white;
-    }
-
+/* ០. សម្រាប់ Tablet និង Laptop ធំៗ */
+@media screen and (min-width: 1024px) {
+    .table-container { width: 100%; }
     .Text-company {
-        font-size: 28px;
-        line-height: 40px;
-    }
-     .Text-company-1 {
-        font-size: 28px;
-        line-height: 0px;
-    }
-    
-    .company-logo-container {
-        gap: 20px;
-        padding: 15px 5px;
-    }
-}
-
-/* 2. Medium Mobile (481px - 768px) */
-@media (max-width: 768px) and (min-width: 481px) {
-    .table-container {
-        width: 95%;
-        margin: 10px auto;
-    }
-    
-    .table-1 {
-        font-size: 12px;
-    }
-    
-    .table-1 th,
-    .table-1 td {
-        padding: 8px;
-        min-width: 90px;
-        font-size: 12px;
-    }
-    
-    .Pic-pf-1 {
-        width: 50%;
-        margin-bottom: 0px;
-    }
-    
-    .company-logo-container {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding: 15px 10px;
-        flex-wrap: nowrap;
-    }
-    
-    .company-logo {
-        width: 80px;
-        height: 80px;
-        flex-shrink: 0;
-    }
-    
-    .Text-company {
-        font-size: 20px;
-        text-align: left;
-        line-height: 1.2;
-        flex-grow: 1;
-    }
-    
-    .Text-company-1 {
-        font-size: 16px;
-        text-align: left;
-        width: 100%;
-        display: block;
-        margin-top: 5px;
-    }
-    
-    .btn {
-        padding: 10px 20px;
-        font-size: 12px;
-        min-width: 100px;
-    }
-    
-    .note-1 {
-        font-size: 12px;
-        padding: 12px;
-        width: 95%;
-    }
-    
-    .footer,
-    .all-right {
-        font-size: 12px;
-    }
-    
-    .buttongroup {
-        gap: 8px;
-        margin: 15px auto;
-    }
-}
-
-/* iPhone 13 (390px × 844px) */
-@media (max-width: 390px) and (min-width: 376px) {
-    .table-container {
-        width: 95%;
-        padding: 0 8px;
-        margin: 15px auto;
-    }
-    
-    .Text-company {
-        font-size: 15px;
-        margin-left: 8px;
-    }
-    
-    .Text-company-1 {
-        font-size: 14px;
-        margin-left: 22px;
-    }
-    
-    .table-1 {
-        min-width: 370px;
-        font-size: 12px;
-    }
-    .Name-kh9 {
-        font-size: 30px;
-        color: red;
-    }
-    .table-1 th,
-    .table-1 td {
-        padding: 5px 4px;
-        font-size: 12px;
-        min-width: 75px;
-    }
-    
-    .table-1 th {
-        font-size: 10px;
-        padding: 6px 5px;
-    }
-    
-    .Pic-pf-1 {
-        width: 45%;
-        max-width: 180px;
-        margin-bottom: 8px;
-    }
-    
-    .company-logo {
-        width: 65px;
-        height: 65px;
-    }
-    
-    .company-logo-container {
-        padding: 10px 12px;
-        gap: 12px;
-    }
-    
-    .note-1 {
-        font-size: 10px;
-        padding: 12px;
-    }
-    
-    .btn {
-        font-size: 12px;
-        padding: 10px 18px;
-        min-width: 95px;
-    }
-}
-/* 3. Small Mobile (415px - 480px) pro max */
-@media (max-width: 480px) and (min-width: 415px) {
-    .table-1 th,
-    .table-1 td {
-        padding: 6px;
-        font-size: 10px;
-        min-width: 80px;
-    }
-    
-    .company-logo-container {
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 15px;
-        padding: 12px 15px;
-        flex-wrap: nowrap;
-    }
-    
-    .company-logo {
-        width: 70px;
-        height: 70px;
-        margin: 0;
-        flex-shrink: 0;
-    }
-    .table-1 th.name-khmer {
-        font-size: 15px;
-        color: white;
-    }
-    .Text-company {
-        font-size: 15px;
-        text-align: left;
-        color: white;
-        margin: 0;
-        line-height: 1.5;
-    }
-    
-    .Text-company-1 {
-        font-size: 14px;
+        font-size: 30px; /* ទំហំនេះនឹងមើលទៅសមល្មមលើ 15 Pro Max */
         text-align: center;
-        color: white;
-        margin: 0;
-        line-height: 1.5;
-        display: block;
-        margin-top: 5px;
+    }    
+    .company-logo{
+        width: 120px;
+        height: 120px;
     }
-    
-    .btn {
-        padding: 8px 15px;
-        font-size: 11px;
-        min-width: 85px;
-    }
-    
-    .note-1 {
-        font-size: 11px;
-        padding: 10px;
-        width: 95%;
-        margin: 15px auto;
-    }
-    
-    .footer,
-    .all-right {
-        font-size: 11px;
-        padding: 8px;
-    }
-    
-    .table-1 th {
-        font-size: 12px;
-    }
-    
-    .table-container {
-        width: 95%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .table-1 {
-        min-width: 400px;
-    }
-    
-    .buttongroup {
-        gap: 5px;
-        margin: 10px auto;
-        padding: 0 5px;
-    }
-    
-    .Pic-pf-1 {
-        width: 60%;
-        max-width: 200px;
-        margin-bottom: -10px;
-    }
-}
-
-/* 4. iPhone 6/7/8 Plus (415px) */
-@media (max-width: 414px) and (min-width: 376px) {
-    .company-logo-container {
-        padding: 10px 12px;
-        gap: 12px;
-    }
-
-    .Pic-pf-1 {
-        width: 35%;
-        margin-bottom: -15px;
-    }
-    
-    .company-logo {
-        width: 65px;
-        height: 65px;
-    }
-    
-    .company-logo-container {
-        gap: 10px;
-        width: 100%;
-    }
-    
-    .Text-company {
-        font-size: 14px;
-    }
-    
     .Text-company-1 {
-        font-size: 15px;
-        margin-left: 25px;
+        font-size: 25px;
+        text-align: center;
+        margin-left: 0px;
     }
-    
-    .table-1 {
-        min-width: 380px;
+    .Pic-pf-1 {
+        width: 25%;
+        max-width: 250px;
+    }
+
+    .table-1 th, .table-1 td {
+        padding: 8px 5px;
+        font-size: 20px; /* បង្កើនទំហំអក្សរបន្តិចសម្រាប់អេក្រង់ធំ */
+    }
+
+    table.table-1 thead tr th.info {
+        font-size: 25px;
+    }
+
+    table.table-1 thead tr th.name-khmer {
+        font-size: 23px;
+    }
+    .note-1{
+        font-size: 20px;
+        width: 100%;
+        margin: 0px auto;
+    }
+    .footer {
+        font-size: 20px;
+        line-height: 1.5;
+        padding: 5px;
+    }
+    .all-right{
+        font-size: 20px;
     }
 }
 
-/* 5. iPhone 6/7/8 (375px) */
-@media (max-width: 375px) {
-    .table-container {
-        width: 95%;
-        padding: 0 5px;
-        margin: 10px auto;
-    }
-    
+/* ១. សម្រាប់ Tablet និង Laptop តូចៗ */
+@media screen and (max-width: 1024px) {
+    .table-container { width: 90%; }
     .Text-company {
-        font-size: 12px;
-        margin-left: 5px;
+        font-size: 30px; /* ទំហំនេះនឹងមើលទៅសមល្មមលើ 15 Pro Max */
+        text-align: center;
+    }    
+    .company-logo{
+        width: 100px;
+        height: 100px;
     }
+    .Text-company-1 {
+        font-size: 25px;
+        text-align: center;
+        margin-left: 0px;
+    }
+    .Pic-pf-1 {
+        width: 25%;
+        max-width: 250px;
+    }
+
+    .table-1 th, .table-1 td {
+        padding: 8px 5px;
+        font-size: 18px; /* បង្កើនទំហំអក្សរបន្តិចសម្រាប់អេក្រង់ធំ */
+    }
+
+    table.table-1 thead tr th.info {
+        font-size: 25px;
+    }
+
+    table.table-1 thead tr th.name-khmer {
+        font-size: 23px;
+    }
+    .footer {
+        font-size: 17px;
+        line-height: 1;
+        padding: 5px;
+    }
+}
+
+/* ២. សម្រាប់ iPhone ម៉ូដែល Pro Max / Plus (ដូចជា 11 PM, 13 PM, 15 PM) */
+/* គោលដៅ: 414px ដល់ 430px+ */
+@media screen and (max-width: 480px) {
+    .table-container { width: 98%; margin: 10px auto; }
     
+    .company-logo-container {
+        padding: 15px;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .company-logo {
+        width: 75px;
+        height: 75px;
+    }
+
+    .Text-company {
+        font-size: 14px; /* ទំហំនេះនឹងមើលទៅសមល្មមលើ 15 Pro Max */
+        text-align: left;
+    }
+
     .Text-company-1 {
         font-size: 13px;
+        text-align: left;
         margin-left: 20px;
     }
-    
-    .table-1 {
-        min-width: 360px;
-        font-size: 11px;
+
+    .table-1 th, .table-1 td {
+        padding: 8px 5px;
+        font-size: 13px; /* បង្កើនទំហំអក្សរបន្តិចសម្រាប់អេក្រង់ធំ */
     }
-    
-    .table-1 th,
-    .table-1 td {
-        padding: 4px 3px;
-        font-size: 10px;
-        min-width: 70px;
+
+    table.table-1 thead tr th.info {
+        font-size: 17px;
     }
-    
-    .table-1 th {
-        font-size: 11px;
-        padding: 5px 4px;
+
+    table.table-1 thead tr th.name-khmer {
+        font-size: 17px;
     }
-    
+    .note-1 {
+        font-size: 12px;
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .footer {
+        margin-top: 5px;
+        font-size: 13px;
+        line-height: 1;
+        padding: 5px;
+    }
     .Pic-pf-1 {
         width: 40%;
-        max-width: 150px;
-        margin-bottom: 5px;
-    }
-    
-    .company-logo {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .company-logo-container {
-        padding: 8px 10px;
-        gap: 8px;
+        max-width: 200px;
     }
 }
 
-/* 6. Very Small Mobile (up to 320px) */
-@media (max-width: 320px) {
-    .table-1 {
-        min-width: 320px;
-    }
-    
-    .table-1 th,
-    .table-1 td {
-        padding: 3px 2px;
-        font-size: 5px;
-        min-width: 60px;
-    }
-    
-    .Text-company {
-        font-size: 11px;
-    }
-    
-    .Text-company-1 {
-        font-size: 12px;
+/* ៣. សម្រាប់ iPhone ម៉ូដែលធម្មតា (iPhone 13, 14, 15 Pro - ទទឹងខ្ទង់ 390px) */
+@media screen and (max-width: 393px) {
+    .Text-company { font-size: 12px; }
+    .Text-company-1 { 
+        font-size: 11px; 
         margin-left: 15px;
     }
-    
+    .Pic-pf-1{
+        width: 40%;
+        margin-bottom: -12px;
+    }
+    .table-1 th, .table-1 td {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+
+    .note-1 {
+        font-size: 11px;
+        width: 100%;
+        margin: 0px auto;
+        padding: 10px 0px;
+    }
+
+    .footer {
+        font-size: 12px;
+        line-height: 1;
+        padding: 5px;
+    }
+}
+
+/* ៤. សម្រាប់ទូរសព្ទអេក្រង់តូចបំផុត (iPhone SE, 7, 8 - 375px ចុះក្រោម) */
+@media screen and (max-width: 375px) {
+    .Pic-pf-1{
+        width: 40%;
+        margin-bottom: -15px;
+    }
+    .Text-company { font-size: 10px; }
+    .Text-company-1 { 
+        font-size: 10px; 
+        margin-left: 8px;
+    }
     .company-logo {
         width: 50px;
         height: 50px;
     }
     
-    .Pic-pf-1 {
-        width: 50%;
-        max-width: 120px;
+    .table-1 th, .table-1 td {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+
+     table.table-1 thead tr th.info {
+        font-size: 13px;
+    }
+
+    table.table-1 thead tr th.name-khmer {
+        font-size: 13px;
+    }
+
+    .note-1 {
+        font-size: 9px;
+        width: 100%;
+        margin: 0px auto;
+        padding: 10px 0px;
+    }
+
+    .footer {
+        font-size: 10px;
+        line-height: 0.5;
+        padding: 5px;
+    }
+    .buttongroup {
+        display: flex;
+        gap: 7px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: bold;
+        min-width: 60px;
     }
 }
